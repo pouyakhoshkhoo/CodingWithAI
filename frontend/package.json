@@ -1,12 +1,11 @@
 {
-  "name": "verified-property-frontend",
+  "name": "real-estate-verification-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3000",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start --port 3000"
   },
   "dependencies": {
     "@types/leaflet": "latest",
@@ -14,10 +13,12 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "leaflet": "latest",
+    "leaflet.markercluster": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-leaflet": "latest",
+    "tailwindcss": "latest",
     "typescript": "latest"
   },
   "devDependencies": {}

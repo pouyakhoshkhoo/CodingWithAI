@@ -1,17 +1,30 @@
 services:
   postgres:
-    image: postgres:16-alpine
+    image: postgis/postgis:16-3.4
     environment:
-      POSTGRES_USER: property
-      POSTGRES_PASSWORD: change-me-local
-      POSTGRES_DB: property_marketplace
+      POSTGRES_USER: estate
+      POSTGRES_PASSWORD: estate-local-password
+      POSTGRES_DB: estate_verification
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./backend/prisma/init-postgis.sql:/docker-entrypoint-initdb.d/01-postgis.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U estate -d estate_verification"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   redis:
     image: redis:7-alpine
     ports:
       - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 volumes:
   postgres_data:
