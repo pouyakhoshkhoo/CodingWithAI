@@ -1,0 +1,5 @@
+{
+  "super_admin": ["listing.review", "edit_request.review", "report.resolve", "readonly.view", "admin.manage", "pricing.manage"],
+  "content_moderator": ["listing.review", "edit_request.review", "report.resolve", "readonly.view"],
+  "support": ["readonly.view"]
+}
