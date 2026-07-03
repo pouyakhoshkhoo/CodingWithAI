@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ListingsController } from './listings.controller';
+import { ListingsController } from './api';
 import { ListingsService } from './listings.service';
 
 @Module({
