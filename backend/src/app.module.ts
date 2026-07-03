@@ -4,7 +4,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { ListingsModule } from './listings/listings.module';
 import { NotificationsModule } from './notifications/notifications.module';
-import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -18,7 +17,6 @@ import { PrismaModule } from './prisma/prisma.module';
         }
       })
     }),
-    PrismaModule,
     NotificationsModule,
     AuthModule,
     ListingsModule
