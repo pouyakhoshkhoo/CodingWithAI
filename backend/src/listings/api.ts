@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ListingsService } from './listings.service';
 
 @Controller('listings')
@@ -13,5 +13,10 @@ export class ListingsController {
   @Get('map')
   map(@Query() query: Record<string, string>) {
     return this.service.mapQuery(Number(query.swLat), Number(query.swLng), Number(query.neLat), Number(query.neLng));
+  }
+
+  @Post()
+  create(@Body() body: Record<string, unknown>) {
+    return this.service.createDraft(body as never);
   }
 }
