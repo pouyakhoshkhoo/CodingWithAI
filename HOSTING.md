@@ -67,7 +67,34 @@ Frontend will run on:
 http://localhost:3000
 ```
 
-## 2. Local API Smoke Test
+## 2. Fix Next.js Workspace Root / Turbopack Issues
+
+If Next.js prints a warning about multiple lockfiles or fails with a missing `@swc/helpers...` module, clean the local install and run the frontend from the `frontend` directory only.
+
+From the repository root on Windows PowerShell:
+
+```powershell
+Remove-Item -Recurse -Force .\frontend\.next -ErrorAction SilentlyContinue
+Remove-Item -Recurse -Force .\frontend\node_modules -ErrorAction SilentlyContinue
+Remove-Item -Force .\package-lock.json -ErrorAction SilentlyContinue
+cd .\frontend
+npm install
+npm run dev
+```
+
+From Linux/macOS/Git Bash:
+
+```bash
+rm -rf frontend/.next frontend/node_modules
+rm -f package-lock.json
+cd frontend
+npm install
+npm run dev
+```
+
+The frontend contains `next.config.ts` with an explicit Turbopack root so Next.js treats `frontend/` as the application root.
+
+## 3. Local API Smoke Test
 
 Request OTP placeholder:
 
@@ -125,7 +152,7 @@ View public listings:
 curl http://localhost:8080/api/v1/listings
 ```
 
-## 3. Recommended MVP Hosting
+## 4. Recommended MVP Hosting
 
 For the fastest MVP hosting:
 
@@ -135,7 +162,7 @@ For the fastest MVP hosting:
 - Cache/OTP: Managed Redis
 - File storage: S3-compatible private object storage
 
-## 4. Simple VPS Hosting with Docker
+## 5. Simple VPS Hosting with Docker
 
 A simple production-like deployment can run on one VPS using Docker Compose.
 
@@ -154,7 +181,7 @@ https://example.com        -> frontend:3000
 https://api.example.com    -> backend:8080
 ```
 
-## 5. Frontend Production Build
+## 6. Frontend Production Build
 
 ```bash
 cd frontend
@@ -163,7 +190,7 @@ npm run build
 npm run start
 ```
 
-## 6. Backend Production Build
+## 7. Backend Production Build
 
 ```bash
 cd backend
@@ -172,7 +199,7 @@ go build -o verified-property-api ./cmd/api
 HTTP_ADDR=:8080 ./verified-property-api
 ```
 
-## 7. Environment Variables to Add Next
+## 8. Environment Variables to Add Next
 
 The current MVP does not yet consume all of these, but production implementation should use them:
 
@@ -190,7 +217,7 @@ OBJECT_STORAGE_SECRET_KEY=replace-with-secure-value
 
 Do not commit real secrets into GitHub.
 
-## 8. Production Hardening Checklist
+## 9. Production Hardening Checklist
 
 Before real users upload sensitive documents, implement:
 
@@ -206,6 +233,6 @@ Before real users upload sensitive documents, implement:
 10. Backup and restore process for PostgreSQL.
 11. Manual-first verification workflow with future AI assistant only.
 
-## 9. OpenStreetMap Notes
+## 10. OpenStreetMap Notes
 
 The frontend uses Leaflet and OpenStreetMap tiles. For production traffic, review tile usage policy and consider a paid tile provider or your own tile server if traffic becomes high.
