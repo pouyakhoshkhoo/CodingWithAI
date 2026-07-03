@@ -1,6 +1,4 @@
-import dynamic from 'next/dynamic';
-
-const PropertyMap = dynamic(() => import('../../components/PropertyMap'), { ssr: false });
+import ClientPropertyMap from '../../components/ClientPropertyMap';
 
 export default function SubmitPage() {
   return (
@@ -20,7 +18,7 @@ export default function SubmitPage() {
           <div className="card">
             <h3>Property location</h3>
             <p className="muted">Use OpenStreetMap to choose the property location. Public pages can show approximate location to protect privacy.</p>
-            <PropertyMap editable />
+            <ClientPropertyMap editable />
           </div>
           <button className="button">Submit for review</button>
         </section>
