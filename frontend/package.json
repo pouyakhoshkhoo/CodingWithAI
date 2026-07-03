@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/leaflet": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "leaflet": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-leaflet": "latest",
     "typescript": "latest"
   },
   "devDependencies": {}
